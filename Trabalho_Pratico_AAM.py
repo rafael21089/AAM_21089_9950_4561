@@ -312,8 +312,8 @@ print("Classification Report:\n", classification_report(y_test, y_pred))
 
 # Sample data setup (for demonstration)
 data = {
-    'Likelihood_of_Injury': [4, 6, 11],
-    'Previous_Injuries': [3, 7, 12],
+    'Likelihood_of_Injury': [0, 1, 1],
+    'Previous_Injuries': [0, 0, 1],
     'Player_Age': [28, 36, 40],
     'Player_Weight': [70, 80, 90],
     'Player_Height': [180, 175, 165],
@@ -327,14 +327,14 @@ df['BMI'] = df['Player_Weight'] / (df['Player_Height'] / 100) ** 2
 df['Training_Recovery_Ratio'] = df['Training_Intensity'] / df['Recovery_Time'].replace(0, np.nan)
 
 def classify_investment(row):
-    if (row['Likelihood_of_Injury'] <= 5 and
-        row['Previous_Injuries'] <= 5 and
+    if (row['Likelihood_of_Injury'] == 0 and
+        row['Previous_Injuries'] == 0 and
         row['Player_Age'] <= 30 and
         23.07 - 4.01 <= row['BMI'] <= 23.07 + 4.01 and
         row['Training_Recovery_Ratio'] > 0.249):
         return 'Excellent investment'
-    elif (row['Likelihood_of_Injury'] <= 10 and
-          row['Previous_Injuries'] <= 10 and
+    elif (row['Likelihood_of_Injury'] == 0 and
+          row['Previous_Injuries'] == 0 and
           row['Player_Age'] <= 35 and
           19.05 <= row['BMI'] <= 27.08 and
           0.141 <= row['Training_Recovery_Ratio'] <= 0.249):
